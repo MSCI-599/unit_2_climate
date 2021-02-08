@@ -75,7 +75,7 @@ It is important to note here that an empty vector with the correct length was ma
 
 ### Exercise 5.1
 
-Use a for() loop to calculate the factorial (symbol !) of any integer number greater than 0. (For example: 3! = 3*2*1 = 6) Test it with `num = 3` and `num = 6`.
+Use a for() loop to calculate the factorial (symbol !) of any integer number greater than 0. (For example: $3! = 3*2*1 = 6$) Test it with `num = 3` and `num = 6`.
 
 ***
 
@@ -139,7 +139,7 @@ n_fish = 0   # track the number of fish I've caught
 while (total_catch_lb < 50){
   n_fish = n_fish+1  # I caught another fish!
   new_fish_weight = rnorm(n=1, mean=2, sd=1) # randomly generate the weight of a fish
-  total_catch_lb = total_catch_lb + new_fish_weight
+  total_catch_lb = total_catch_lb + new_fish_weight # calculate weight of all fish caught so far
 }
 
 n_fish

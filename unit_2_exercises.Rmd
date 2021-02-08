@@ -286,7 +286,7 @@ convert_grade_to_letter(58)
 
 Create a user-defined function that is designed to take this temperature anomaly data frame `temp_anomaly` as a parameter called `data` along with a variable `num_years` that indicates the number of years in the rolling average that someone may want to compute. Have the function return the `temp_anomaly` data frame with an added column called `temp_anomaly$roll_avg` that contains the rolling average corresponding to `num_years`. Just like above, you will need to handle indexing differently if `num_years` is even vs. odd. So make sure you include an if statement in your function with an even vs. odd test. I usually use the modulus operator `%%` in R which returns the remainder of a division operation, so num `%%` 2 equals 0 for even numbers and returns 1 for odd numbers.
 
-```{r}
+```{r, eval=FALSE}
 
 calc_rolling_avg = function(data, num_years=5){ # Set 5-yr avgs as default
   data$roll_avg = NA # Initialize results column

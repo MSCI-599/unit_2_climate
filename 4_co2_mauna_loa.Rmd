@@ -22,10 +22,10 @@ Let's look at global patterns in atmospheric CO2 concentrations by examining the
 We can read in the CO2 data from NASA at their website. From here you can download a text file and open it to read the metadata at the top. We can also just download the data directly using their ftp:
 
 ```{r}
-co2 = read.table("data/co2_mm_mlo.txt", col.names = c("year", "month", "decimal_date", "monthly_average", "deseasonalized", "n_days", "st_dev_days", "monthly_mean_uncertainty"))
+# co2 = read.table("data/co2_mm_mlo.txt", col.names = c("year", "month", "decimal_date", "monthly_average", "deseasonalized", "n_days", "st_dev_days", "monthly_mean_uncertainty"))
 
-# url = 'ftp://aftp.cmdl.noaa.gov/products/trends/co2/co2_mm_mlo.txt'
-# co2 = read.table(url, col.names = c("year", "month", "decimal_date", "monthly_average", "deseasonalized", "n_days", "st_dev_days", "monthly_mean_uncertainty"))
+url = 'ftp://aftp.cmdl.noaa.gov/products/trends/co2/co2_mm_mlo.txt'
+co2 = read.table(url, col.names = c("year", "month", "decimal_date", "monthly_average", "deseasonalized", "n_days", "st_dev_days", "monthly_mean_uncertainty"))
 ```
 
 Now some first-pass data exploration:
@@ -43,7 +43,7 @@ range(co2$decimal_date)
 max(co2$monthly_average)
 ```
 
-Let's plot the monthly average atmospheric CO2 concentration (in ppm) to examine the Keeling curve:
+Woah. When I started grad school, atmospheric CO2 was in the 380s and I put in a lot of activist energy towards getting it below 350 ppm by organizing talks and rallies, driving to NYC and D.C. for protests, etc. Let's plot the monthly average atmospheric CO2 concentration (in ppm) to examine the Keeling curve:
 
 ```{r}
 plot(monthly_average ~ decimal_date, type="l", data=co2) 
