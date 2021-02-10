@@ -131,6 +131,16 @@ while (condition) {
 
 Why might `condition` change from `TRUE` to `FALSE`? Presumably because the code inside your loop has changed whether the condition is still `TRUE`. If the code has no relationship to the condition, a `while` loop will run until you stop it. So be careful. You can stop a `while` loop by hitting Escape or by clicking on the stop-sign icon at the top of the RStudio console pane. The icon will appear once the loop begins to run.
 
+Here is an example of a simple `while` loop:
+
+```{r}
+num = -2
+while(num < 0){
+  print("One interation of this loop")
+  num = num+1
+}
+```
+
 You can use `while` loops to do things that take a varying number of iterations. In this example, we'll pretend to go fishing on a lake where there is a 50 pound catch limit. We won't know how many fish we can bring home until we've caught and weighed each fish that we land. To simulate landing a new fish with each iteration of our loop, I'll use a random number generator to supply the weight of the fish. The function `rnorm()` generates a random number with a normal distribution given the mean and sd that is supplied in the parameters.
 
 ```{r}

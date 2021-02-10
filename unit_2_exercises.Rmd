@@ -247,6 +247,7 @@ decadal_loss = data.frame(decade = seq(n_decades),
 for (i in seq(n_decades)){
   # fancy index math:
   print(paste("index from ", (i-1)*10+1, " to ",(i-1)*10+10))
+  # calculate decadal ice loss
   decadal_loss$ice_loss_million_km2[i] = ice_decades$extent_annual_avg[(i-1)*10+1] - ice_decades$extent_annual_avg[(i-1)*10+10]
 }
 
