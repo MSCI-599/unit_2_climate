@@ -71,11 +71,23 @@ my_vector_squared
 
 It is important to note here that an empty vector with the correct length was made before starting the `for` loop and the iterand `i` was used to step through both our original data vector and our new results vector. Programers call this *initializing* an object, or creating an empty object to fill later. This is a much better (and faster) practice than appending a new result onto a results vector, and therefore changing the lengtt of the results vector with every iteration of the loop. 
 
+Here is another example of using the iterand as an index. We can add up all of the elements of a vector, one at a time, and store the total sum in another variable:
+
+```{r}
+vec = c(1,3,5,7)
+total = 0 # initialize results variable
+for (i in seq(length(vec))){
+  total = total + vec[i]
+  print(total)
+}
+
+```
+
 ***
 
 ### Exercise 5.1
 
-Use a for() loop to calculate the factorial (symbol !) of any integer number greater than 0. (For example: $3! = 3*2*1 = 6$) Test it with `num = 3` and `num = 6`.
+Use a for() loop to calculate the factorial (symbol !) of any integer number greater than 0. (For example: 3! = 3*2*1 = 6) Test it with `num = 3` and `num = 6`.
 
 ***
 
