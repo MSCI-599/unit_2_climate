@@ -17,7 +17,7 @@ knitr::opts_chunk$set(fig.width=6, fig.asp = 0.8, collapse=TRUE)
 - Data from: <http://climate.nasa.gov/vital-signs/global-temperature>
 - Raw data: <http://climate.nasa.gov/system/internal_resources/details/original/647_Global_Temperature_Data_File.txt>
 
-NASA's Goddard Institute of Space Studies (outside Washington D.C.) has created an annual global land-ocean temperature index. Each of the last years has consecutively set new records on global temperature. In this section we will download, explore and analyze global mean temperature data.
+NASA's Goddard Institute of Space Studies (outside Washington D.C.) has created an annual global land-ocean temperature index. Many of the last years have set new records on global temperature. In this section we will download, explore and analyze global mean temperature data.
 
 ```{r}
 # temp_anomaly = read.table("data/temp_anomaly_global_mean.txt", skip=5, sep="", header = FALSE)
@@ -63,8 +63,11 @@ Now that we can see the 1998-2012 trend that was discussed in the 2013 IPCC repo
 
 ### Calculating rolling averages
     
-Remember the meaning of "5 year average" vs "annual average"? The 5 year average is calculated ay averaging data from a given year along with the 2 years before and 2 years after (i.e. the 5-year rolling average of 2005 temperature = the temperature mean from 2003-2007).
+In the last lesson we calculated annual averages and 5 year averages to get a smoother look at our data and be less susceptible to random perturbations. In that lesson, we defined the 5 year average as the average of the data from a given year along with the 2 years before and 2 years after (i.e. the 5-year rolling average of 2005 temperature = the temperature mean from 2003-2007). 
 
+Sometimes scientists calculate moving averages where they simply just look at the period prior to a given year. For example, we could define a 5 year average as the average over a given year and the 4 years prior (i.e. the 5-year rolling average of 2005 temperature = the temperature from 2001-2005). Either definition is acceptable as long as you are explicit with which definition you are using. The advantage of calculating moving averages for an endpoint (instead of a midpoint) is that they are simpler to calculate and you can provide averages up to the most current date. For this lesson, we'll calculate moving averages using the simpler end-point definition.
+
+- Define a 5 year average as the average over a given year and the 4 years prior.
 - Construct 5 year averages from the annual data.  Construct 10 & 20-year averages. 
 - Plot the different averages and describe what differences you see and why.  
 
@@ -81,16 +84,16 @@ roll_avg$year20 = NA
 for (i in seq(dim(temp_anomaly)[1]))
 {
   # Calculate 5 year moving averages
-  if (i > 2 & i < (dim(temp_anomaly)[1]-2)){
-    roll_avg$year5[i] = mean(roll_avg[c((i-2):(i+2)),'No_Smoothing'])
+  if (i >= 5 & i <= (dim(temp_anomaly)[1])){
+    roll_avg$year5[i] = mean(roll_avg[c((i-4):i),'No_Smoothing'])
   }
   # Calculate 10 year moving averages
-  if (i > 5 & i < (dim(temp_anomaly)[1]-4)){
-    roll_avg$year10[i] = mean(roll_avg[c((i-5):(i+4)),'No_Smoothing'])
+  if (i >= 10 & i <= (dim(temp_anomaly)[1])){
+    roll_avg$year10[i] = mean(roll_avg[c((i-9):i),'No_Smoothing'])
   }
   # Calculate 20 year moving averages
-  if (i > 10 & i < (dim(temp_anomaly)[1]-9)){
-    roll_avg$year20[i] = mean(roll_avg[c((i-10):(i+9)),'No_Smoothing'])
+  if (i >= 20 & i <= (dim(temp_anomaly)[1])){
+    roll_avg$year20[i] = mean(roll_avg[c((i-19):i),'No_Smoothing'])
   }
 }
 
